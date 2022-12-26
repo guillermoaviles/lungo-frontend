@@ -4,7 +4,7 @@ import { getSession, signOut } from 'next-auth/react';
 function User({ user }) {
     return (
         <div>
-            <h4>User session:</h4>
+            <h4>Welcome!</h4>
             <pre>{JSON.stringify(user, null, 2)}</pre>
             <button onClick={() => signOut({ redirect: '/signin' })}>Sign out</button>
         </div>
