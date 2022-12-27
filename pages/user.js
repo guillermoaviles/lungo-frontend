@@ -5,7 +5,7 @@ import React, { useState } from "react";
 // gets a prop from getServerSideProps
 function User({ user }) {
 
-    const [nfts, setNFTs] = useState()
+    const [nfts, setNFTs] = useState([])
 
     return (
         <div>
