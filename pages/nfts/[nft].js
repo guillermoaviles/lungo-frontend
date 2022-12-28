@@ -1,14 +1,42 @@
-import React from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+export const getStaticPaths = async () => {
+    const options = {
+        method: 'GET',
+        url: `https://deep-index.moralis.io/api/v2/${user.address}/nft`,
+        params: {chain: 'eth', format: 'decimal', normalizeMetadata: 'false'},
+        headers: {accept: 'application/json', 'X-API-Key': '90aMzzA9q0jMTFt2SUqJ2t1CWVRaIVUBErIJcDwYINiHz2vtquYggZMOzf9FKQZL'}
+    };
+
+    const res = await axios
+        .request(options)
+        .then(function (res) {
+        console.log(res);
+        })
+        .catch(function (error) {
+        console.error(error);
+        });
+
+        let n = data;
+        const data = await (n.concat(res.data.result));
+
+        const paths = data.map(nft => {
+            return {
+                params: { id: nft.token_hash.toString() }
+            }
+        })
+
+        return {
+            paths,
+            fallback: false
+        }
+}
+
+export const getStaticProps = async (context) => {
+    const id = context.params.id;
+    const response = 
+}
 
 
-const NFT = ({ nfts, i }) => {
-
-    const router = useRouter();
-    const nftSelected = router.query.nft;
-    console.log(nfts)
-    console.log(nftSelected)
+const NFT = ({ nfts }) => {
 
     function getNFTimgs(metadata) {
         if (!metadata) return;
@@ -23,6 +51,8 @@ const NFT = ({ nfts, i }) => {
           return "https://ipfs.io/ipfs/" + meta.image.substring(7);
         }
       }
+
+        console.log(nfts)
     
     return (
         <div style={{ width: "70px" }}>
