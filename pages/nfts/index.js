@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import axios from "axios";
 import Link from 'next/link'
 
@@ -42,16 +43,16 @@ function NFTContainer({ user, nfts, setNFTs }) {
             });
         }
 
+        useEffect(() => {
+          getNFTs()
+        }, [nfts])
         console.log(nfts)
         return (
             <>
               <div className="App">
                 <div style={{ fontSize: "23px", fontWeight: "700" }}>
-                  My NFTs
+                  My NFTs ({nfts.length})
                 </div>
-                <button className="bu" onClick={getNFTs}>
-                  Get NFT's
-                </button>
                 {nfts.length > 0 && (
                   <>
                     <div className="results">
