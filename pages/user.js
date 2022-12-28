@@ -1,5 +1,5 @@
 import { getSession, signOut } from 'next-auth/react';
-import NFTContainer from './nftContainer';
+import NFTContainer from './nfts';
 import React, { useState } from "react";
 
 // gets a prop from getServerSideProps
