@@ -3,12 +3,27 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 
-const NFT = ({ nft, i , getNFTimgs }) => {
+const NFT = ({ nfts, i }) => {
 
     const router = useRouter();
     const nftSelected = router.query.nft;
+    console.log(nfts)
+    console.log(nftSelected)
 
-    console.log(nft)
+    function getNFTimgs(metadata) {
+        if (!metadata) return;
+    
+        let meta = JSON.parse(metadata);
+    
+        if (!meta.image) return;
+    
+        if (!meta.image.includes("ipfs://")) {
+          return meta.image;
+        } else {
+          return "https://ipfs.io/ipfs/" + meta.image.substring(7);
+        }
+      }
+    
     return (
         <div style={{ width: "70px" }}>
             <img
@@ -22,7 +37,7 @@ const NFT = ({ nft, i , getNFTimgs }) => {
                 {`${nftSelected.name}\n${nftSelected.token_id}`}
             </div>
             <h1>
-                <Link href='/user'><a>Go back</a></Link>
+                <Link href='/user'>Go back</Link>
             </h1>
         </div>
     )

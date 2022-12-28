@@ -9,8 +9,8 @@ function User({ user }) {
 
     return (
         <div>
-            <h4>My NFTs</h4>
-            <pre>{JSON.stringify(user, null, 2)}</pre>
+            <h1>Welcome to Lungo!</h1>
+            {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
             <NFTContainer user={user} nfts={nfts} setNFTs={setNFTs}/>
             <button onClick={() => signOut({ redirect: '/signin' })}>Sign out</button>
         </div>

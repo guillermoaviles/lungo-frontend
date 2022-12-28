@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 
 function NFTContainer({ user, nfts, setNFTs }) {
-
+    
 
     function getNFTimgs(metadata) {
         if (!metadata) return;
@@ -42,6 +42,7 @@ function NFTContainer({ user, nfts, setNFTs }) {
             });
         }
 
+        console.log(nfts)
         return (
             <>
               <div className="App">
@@ -58,8 +59,8 @@ function NFTContainer({ user, nfts, setNFTs }) {
                         return (
                             <Link 
                               href='/nfts/[nft]'
-                              as={`nfts/${nft.name}`} 
-                              key={i}
+                              as={`nfts/${nft.name}-${nft.token_id}`} 
+                              key={nft}
                             >
                                 <div style={{ width: "70px" }}>
                                     <img
