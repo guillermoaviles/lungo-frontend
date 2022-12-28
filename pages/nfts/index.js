@@ -59,8 +59,8 @@ function NFTContainer({ user, nfts, setNFTs }) {
                         return (
                             <Link 
                               href='/nfts/[nft]'
-                              as={`nfts/${nft.name}-${nft.token_id}`} 
-                              key={nft}
+                              as={`nfts/${nft.token_hash}-${user.address}`} 
+                              key={nft.token_hash}
                             >
                                 <div style={{ width: "70px" }}>
                                     <img
