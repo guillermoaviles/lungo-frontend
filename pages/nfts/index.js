@@ -3,7 +3,7 @@ import axios from "axios";
 import Link from 'next/link'
 
 
-function NFTContainer({ user, nfts, setNFTs }) {
+function NFTContainer({ user, trackedAddresses, setTrackedAddresses, nfts, setNFTs }) {
     
 
     function getNFTimgs(metadata) {
@@ -18,35 +18,46 @@ function NFTContainer({ user, nfts, setNFTs }) {
         } else {
           return "https://ipfs.io/ipfs/" + meta.image.substring(7);
         }
-      }
+      };
 
 
-      async function getNFTs() {
+    async function getNFTs() {
+      let res;
+      const options = {
+          method: 'GET',
+          url: `https://deep-index.moralis.io/api/v2/${user.address}/nft`,
+          params: {chain: 'eth', format: 'decimal', normalizeMetadata: 'false'},
+          headers: {accept: 'application/json', 'X-API-Key': '90aMzzA9q0jMTFt2SUqJ2t1CWVRaIVUBErIJcDwYINiHz2vtquYggZMOzf9FKQZL'}
+      };
 
-        let res;
-        const options = {
-            method: 'GET',
-            url: `https://deep-index.moralis.io/api/v2/${user.address}/nft`,
-            params: {chain: 'eth', format: 'decimal', normalizeMetadata: 'false'},
-            headers: {accept: 'application/json', 'X-API-Key': '90aMzzA9q0jMTFt2SUqJ2t1CWVRaIVUBErIJcDwYINiHz2vtquYggZMOzf9FKQZL'}
-        };
+      res = await axios
+          .request(options)
+          .then(function (res) {
+              let n = nfts;
+              setNFTs(n.concat(res.data.result));
+          console.log(res);
+          })
+          .catch(function (error) {
+          console.error(error);
+          });
+    };
 
-        res = await axios
-            .request(options)
-            .then(function (res) {
-                let n = nfts;
-                setNFTs(n.concat(res.data.result));
-            console.log(res);
-            })
-            .catch(function (error) {
-            console.error(error);
-            });
-        }
 
-        useEffect(() => {
-          getNFTs()
-        }, [nfts])
-        console.log(nfts)
+    const getTrackedAddresses = () => {
+      axios
+        .get(`http://localhost:8080/api/lungo-backend/users/${user.address}`)
+        .then((res) => {
+          setTrackedAddresses(res.data)
+        });
+    };
+
+    useEffect(() => {
+      getNFTs();
+      getTrackedAddresses();
+    }, [nfts, trackedAddresses]);
+
+    console.log(nfts)
+
         return (
             <>
               <div className="App">
@@ -55,7 +66,7 @@ function NFTContainer({ user, nfts, setNFTs }) {
                 </div>
                 {nfts.length > 0 && (
                   <>
-                    <div className="results">
+                    <div className="nft-container">
                       {nfts?.map((nft, i) => {
                         return (
                             <Link 
@@ -81,9 +92,31 @@ function NFTContainer({ user, nfts, setNFTs }) {
                     </div>
                   </>
                 )}
+                <div>
+                  My Tracked Wallets ({trackedAddresses.length})
+                </div>
+                {trackedAddresses.length > 0 && (
+                  <>
+                    <div className="addresses-container">
+                      {trackedAddresses?.map((trackedAddress, key) => {
+                        return (
+                            <Link 
+                              href='/trackedAddresses/[trackedAddress]'
+                              as={`trackedAddresses/${trackedAddress.address}`} 
+                              key={key}
+                            >
+                                <div style={{ width: "70px" }}>
+                                   {trackedAddress.address}
+                                </div>
+                            </Link>
+                        )
+                      })}
+                    </div>
+                  </>
+                )}
               </div>
             </>
-          );
-}
+        );
+};
 
 export default NFTContainer;

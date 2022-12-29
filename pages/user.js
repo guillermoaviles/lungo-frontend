@@ -6,12 +6,19 @@ import React, { useState } from "react";
 function User({ user }) {
 
     const [nfts, setNFTs] = useState([])
+    const [trackedAddresses, setTrackedAddresses] = useState([])
 
     return (
         <div>
             <h1>Welcome to Lungo!</h1>
             {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
-            <NFTContainer user={user} nfts={nfts} setNFTs={setNFTs}/>
+            <NFTContainer 
+                user={ user } 
+                trackedAddresses={ trackedAddresses } 
+                setTrackedAddresses={ setTrackedAddresses } 
+                nfts={ nfts } 
+                setNFTs={ setNFTs }
+            />
             <button onClick={() => signOut({ redirect: '/signin' })}>Sign out</button>
         </div>
     );
