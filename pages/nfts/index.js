@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, } from "react";
 import axios from "axios";
 import Link from 'next/link'
 import TrackedWallets from "./trackedWallets";
 
 
-function NFTContainer({ user, nfts, setNFTs }) {
+function NFTContainer({ user }) {
     
+  const [nfts, setNFTs] = useState([])
 
     function getNFTimgs(metadata) {
         if (!metadata) return;

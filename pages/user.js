@@ -1,22 +1,16 @@
 import { getSession, signOut } from 'next-auth/react';
 import NFTContainer from './nfts';
-import React, { useState } from "react";
+import React from "react";
 
 // gets a prop from getServerSideProps
 function User({ user }) {
-
-    const [nfts, setNFTs] = useState([])
     
 
     return (
         <div>
             <h1>Welcome to Lungo!</h1>
             {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
-            <NFTContainer 
-                user={ user } 
-                nfts={ nfts } 
-                setNFTs={ setNFTs }
-            />
+            <NFTContainer user={ user } />
             <button onClick={() => signOut({ redirect: '/signin' })}>Sign out</button>
         </div>
     );
