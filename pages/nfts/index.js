@@ -7,6 +7,7 @@ import TrackedWallets from "./trackedWallets";
 function NFTContainer({ user }) {
     
   const [nfts, setNFTs] = useState([])
+  const [loaded, setLoaded] = useState(false)
 
     function getNFTimgs(metadata) {
         if (!metadata) return;
@@ -21,7 +22,7 @@ function NFTContainer({ user }) {
           return "https://ipfs.io/ipfs/" + meta.image.substring(7);
         }
       };
-
+      console.log(user.address)
 
     async function getNFTs() {
       let res;
@@ -35,8 +36,10 @@ function NFTContainer({ user }) {
       res = await axios
           .request(options)
           .then(function (res) {
-              let n = nfts;
-              setNFTs(n.concat(res.data.result));
+              // let n = nfts;
+              console.log(res);
+              setNFTs(res.data.result);
+              setLoaded(true);
           console.log(res);
           })
           .catch(function (error) {
@@ -45,8 +48,9 @@ function NFTContainer({ user }) {
     };
 
     useEffect(() => {
-      getNFTs();
-    }, [nfts]);
+      getNFTs()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [loaded])
 
     console.log(nfts)
 

@@ -6,6 +6,7 @@ import Link from 'next/link'
 function TrackedWallets({ user }) {
 
     const [trackedAddresses, setTrackedAddresses] = useState([])
+    const [loaded, setLoaded] = useState(false)
 
 
     const getTrackedAddresses = () => {
@@ -14,12 +15,14 @@ function TrackedWallets({ user }) {
         .then((res) => {
             console.log(res.data)
             setTrackedAddresses(res.data)
+            setLoaded(true);
         });
     };
 
     useEffect(() => {
         getTrackedAddresses();
-      }, [trackedAddresses]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [loaded]);
 
       console.log(trackedAddresses)
 

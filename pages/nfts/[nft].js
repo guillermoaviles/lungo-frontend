@@ -7,13 +7,15 @@ import { useRouter } from 'next/router'
 const NFT = () => {
 
     const [nftResults, setNFTresults] = useState([])
+    const [loaded, setLoaded] = useState(false)
+    // const [nftMatch, setNFTmatch] = useState({})
 
     const router = useRouter();
     const params = router.query.nft.toString().split('-');
     const tokenHash = params[0];
     const user = params[1];
     console.log(params)
-    
+
 
     function getNFTimgs(metadata) {
         if (!metadata) return;
@@ -49,50 +51,58 @@ const NFT = () => {
         };
 
         res = await axios
-            .request(options)
-            .then(function (res) {
-                let n = nftResults;
-                setNFTresults(n.concat(res.data.result));
-            console.log(res);
-            })
-            .catch(function (error) {
-            console.error(error);
-            });
-      }
+        .request(options)
+        .then(function (res) {
+            // let n = nftResults;
+            setNFTresults(res.data.result);
+            setLoaded(true);
+        console.log(res);
+        })
+        .catch(function (error) {
+        console.error(error);
+        });
+  }
 
       useEffect(() => {
         getNFTs()
-      }, [nftResults])
+      }, [loaded])
 
         console.log(nftResults)
         let nftMatch = nftResults.filter(item => {
+            console.log(item.token_hash)
+            console.log(tokenHash)
+            console.log(item.token_hash === tokenHash)
             return item.token_hash === tokenHash
         })
-       
-        if (nftMatch.length > 1) {
-            nftMatch = nftMatch[0]
+        console.log(nftMatch[0])
+        if (nftMatch.length === 1) {
+            nftMatch = (nftMatch[0])
         }
 
         console.log(nftMatch)
 
     return (
         <div style={{ width: "500px" }}>
-            <img
-                loading="lazy"
-                width={450}
-                src={getNFTimgs(nftMatch.metadata)}
-                alt={`image`}
-                style={{ borderRadius: "5px", marginTop: "10px" }}
-            />
-            <div style={{ fontSize: "14px", fontWeight: "bold" }}>
-                {`${nftMatch.name}\n#${nftMatch.token_id}`}
-            </div>
-            <div style={{ fontSize: "12px" }}>
-                {getNFTdescription(nftMatch.metadata)}
-            </div>
-            <button>
-                <Link href='/user'>Go back</Link>
-            </button>
+            {nftMatch && (
+                <>
+                    <img
+                        loading="lazy"
+                        width={450}
+                        src={getNFTimgs(nftMatch.metadata)}
+                        alt={`image`}
+                        style={{ borderRadius: "5px", marginTop: "10px" }}
+                    />
+                    <div style={{ fontSize: "14px", fontWeight: "bold" }}>
+                        {`${nftMatch.name}\n#${nftMatch.token_id}`}
+                    </div>
+                    <div style={{ fontSize: "12px" }}>
+                        {getNFTdescription(nftMatch.metadata)}
+                    </div>
+                    <button>
+                        <Link href='/user'>Go back</Link>
+                    </button>
+            </>
+            )}
         </div>
     )
 }
