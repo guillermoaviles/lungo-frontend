@@ -1,24 +1,10 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import Link from 'next/link'
+import TrackedWallets from "./trackedWallets";
 
 
-function NFTContainer({ user, trackedAddresses, setTrackedAddresses, nfts, setNFTs }) {
-    
-
-    function getNFTimgs(metadata) {
-        if (!metadata) return;
-    
-        let meta = JSON.parse(metadata);
-    
-        if (!meta.image) return;
-    
-        if (!meta.image.includes("ipfs://")) {
-          return meta.image;
-        } else {
-          return "https://ipfs.io/ipfs/" + meta.image.substring(7);
-        }
-      };
+function NFTContainer({ user, nfts, setNFTs }) {
 
 
     async function getNFTs() {
@@ -42,19 +28,24 @@ function NFTContainer({ user, trackedAddresses, setTrackedAddresses, nfts, setNF
           });
     };
 
-
-    const getTrackedAddresses = () => {
-      axios
-        .get(`http://localhost:8080/api/lungo-backend/users/${user.address}`)
-        .then((res) => {
-          setTrackedAddresses(res.data)
-        });
-    };
-
     useEffect(() => {
       getNFTs();
-      getTrackedAddresses();
-    }, [nfts, trackedAddresses]);
+    }, [nfts]);
+
+
+    function getNFTimgs(metadata) {
+      if (!metadata) return;
+  
+      let meta = JSON.parse(metadata);
+  
+      if (!meta.image) return;
+  
+      if (!meta.image.includes("ipfs://")) {
+        return meta.image;
+      } else {
+        return "https://ipfs.io/ipfs/" + meta.image.substring(7);
+      }
+    };
 
     console.log(nfts)
 
@@ -72,7 +63,7 @@ function NFTContainer({ user, trackedAddresses, setTrackedAddresses, nfts, setNF
                             <Link 
                               href='/nfts/[nft]'
                               as={`nfts/${nft.token_hash}-${user.address}`} 
-                              key={nft.token_hash}
+                              key={i}
                             >
                                 <div style={{ width: "70px" }}>
                                     <img
@@ -92,28 +83,7 @@ function NFTContainer({ user, trackedAddresses, setTrackedAddresses, nfts, setNF
                     </div>
                   </>
                 )}
-                <div>
-                  My Tracked Wallets ({trackedAddresses.length})
-                </div>
-                {trackedAddresses.length > 0 && (
-                  <>
-                    <div className="addresses-container">
-                      {trackedAddresses?.map((trackedAddress, key) => {
-                        return (
-                            <Link 
-                              href='/trackedAddresses/[trackedAddress]'
-                              as={`trackedAddresses/${trackedAddress.address}`} 
-                              key={key}
-                            >
-                                <div style={{ width: "70px" }}>
-                                   {trackedAddress.address}
-                                </div>
-                            </Link>
-                        )
-                      })}
-                    </div>
-                  </>
-                )}
+                <TrackedWallets user={user}/>
               </div>
             </>
         );

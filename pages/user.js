@@ -6,7 +6,7 @@ import React, { useState } from "react";
 function User({ user }) {
 
     const [nfts, setNFTs] = useState([])
-    const [trackedAddresses, setTrackedAddresses] = useState([])
+    
 
     return (
         <div>
@@ -14,8 +14,6 @@ function User({ user }) {
             {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
             <NFTContainer 
                 user={ user } 
-                trackedAddresses={ trackedAddresses } 
-                setTrackedAddresses={ setTrackedAddresses } 
                 nfts={ nfts } 
                 setNFTs={ setNFTs }
             />
