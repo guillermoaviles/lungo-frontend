@@ -5,13 +5,28 @@ import TrackedWallets from "./trackedWallets";
 
 
 function NFTContainer({ user, nfts, setNFTs }) {
+    
+
+    function getNFTimgs(metadata) {
+        if (!metadata) return;
+    
+        let meta = JSON.parse(metadata);
+    
+        if (!meta.image) return;
+    
+        if (!meta.image.includes("ipfs://")) {
+          return meta.image;
+        } else {
+          return "https://ipfs.io/ipfs/" + meta.image.substring(7);
+        }
+      };
 
 
     async function getNFTs() {
       let res;
       const options = {
           method: 'GET',
-          url: `https://deep-index.moralis.io/api/v2/${user.address}/nft`,
+          url: `https://deep-index.moralis.io/api/v2/${user.address.toLowerCase()}/nft`,
           params: {chain: 'eth', format: 'decimal', normalizeMetadata: 'false'},
           headers: {accept: 'application/json', 'X-API-Key': '90aMzzA9q0jMTFt2SUqJ2t1CWVRaIVUBErIJcDwYINiHz2vtquYggZMOzf9FKQZL'}
       };
@@ -31,21 +46,6 @@ function NFTContainer({ user, nfts, setNFTs }) {
     useEffect(() => {
       getNFTs();
     }, [nfts]);
-
-
-    function getNFTimgs(metadata) {
-      if (!metadata) return;
-  
-      let meta = JSON.parse(metadata);
-  
-      if (!meta.image) return;
-  
-      if (!meta.image.includes("ipfs://")) {
-        return meta.image;
-      } else {
-        return "https://ipfs.io/ipfs/" + meta.image.substring(7);
-      }
-    };
 
     console.log(nfts)
 

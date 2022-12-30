@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Link from 'next/link'
 
 
 function TrackedWallets({ user }) {
@@ -9,8 +10,9 @@ function TrackedWallets({ user }) {
 
     const getTrackedAddresses = () => {
         axios
-        .get(`http://localhost:8080/api/lungo-backend/users/${user.address}`)
+        .get(`http://localhost:8080/api/lungo-backend/addresses/${user.address.toLowerCase()}`)
         .then((res) => {
+            console.log(res.data)
             setTrackedAddresses(res.data)
         });
     };
@@ -19,6 +21,7 @@ function TrackedWallets({ user }) {
         getTrackedAddresses();
       }, [trackedAddresses]);
 
+      console.log(trackedAddresses)
 
     return (
         <>
@@ -33,11 +36,11 @@ function TrackedWallets({ user }) {
                             return (
                                 <Link 
                                     href='/trackedAddresses/[trackedAddress]'
-                                    as={`trackedAddresses/${trackedAddress.address}`} 
+                                    as={`trackedAddresses/${trackedAddress.addresses}`} 
                                     key={key}
                                 >
                                     <div style={{ width: "70px" }}>
-                                        {trackedAddress.address}
+                                        {trackedAddress.addresses}
                                     </div>
                                 </Link>
                             )
