@@ -11,10 +11,10 @@ function TrackedWallets({ user }) {
 
     const getTrackedAddresses = () => {
         axios
-        .get(`http://localhost:8080/api/lungo-backend/addresses/${user.address.toLowerCase()}`)
+        .get(`http://localhost:8080/api/lungo-backend/users/${user.address.toLowerCase()}`)
         .then((res) => {
-            console.log(res.data)
-            setTrackedAddresses(res.data)
+            console.log(res.data.addresses)
+            setTrackedAddresses(res.data.addresses)
             setLoaded(true);
         });
     };
@@ -39,11 +39,11 @@ function TrackedWallets({ user }) {
                             return (
                                 <Link 
                                     href='/trackedAddresses/[trackedAddress]'
-                                    as={`trackedAddresses/${trackedAddress.addresses}`} 
+                                    as={`trackedAddresses/${trackedAddress}`} 
                                     key={key}
                                 >
                                     <div style={{ width: "70px" }}>
-                                        {trackedAddress.addresses}
+                                        {trackedAddress}
                                     </div>
                                 </Link>
                             )
