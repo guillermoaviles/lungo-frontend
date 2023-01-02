@@ -12,9 +12,6 @@ function TrackedWallets({ user }) {
     const [addressToAdd, setAddressToAdd] = useState({
         addresses: ""
     })
-    const [addressToDelete, setAddressToDelete] = useState({
-        addresses: ""
-    })
 
 
     const getTrackedAddresses = () => {
@@ -53,6 +50,21 @@ function TrackedWallets({ user }) {
         setAddressToAdd(addAddressInput);
     }
 
+    const deleteAddressCall = async (addr) => {
+        let addressToDelete = {
+            addresses: `${addr}`
+        }
+        try {
+            // eslint-disable-next-line no-unused-vars
+            const change = await axios.put(`http://localhost:8080/api/lungo-backend/deleteAddress/${user.address.toLowerCase()}`, addressToDelete)
+                router.push('/user')
+        }
+        catch (err) {
+            console.log(err)
+        }
+    } 
+
+
     return (
         <>
             <div className="tracked-addresses">
@@ -69,15 +81,18 @@ function TrackedWallets({ user }) {
                         <div className="addresses-container">
                             {trackedAddresses?.map((trackedAddress, key) => {
                                 return (
-                                    <Link 
-                                        href='/trackedAddresses/[trackedAddress]'
-                                        as={`trackedAddresses/${trackedAddress}`} 
-                                        key={key}
-                                    >
-                                        <div style={{ width: "70px" }}>
-                                            {trackedAddress}
-                                        </div>
-                                    </Link>
+                                    <div>
+                                        <Link 
+                                            href='/trackedAddresses/[trackedAddress]'
+                                            as={`trackedAddresses/${trackedAddress}`} 
+                                            key={key}
+                                        >
+                                            <div style={{ width: "70px" }}>
+                                                {trackedAddress}
+                                            </div>
+                                        </Link>
+                                        <button value={trackedAddress} onClick={() => deleteAddressCall(trackedAddress)}>❌</button>
+                                    </div>
                                 )
                             })}
                         </div>
