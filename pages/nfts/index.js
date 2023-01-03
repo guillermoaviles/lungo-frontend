@@ -36,7 +36,6 @@ function NFTContainer({ user }) {
       res = await axios
           .request(options)
           .then(function (res) {
-              // let n = nfts;
               console.log(res);
               setNFTs(res.data.result);
               setLoaded(true);
