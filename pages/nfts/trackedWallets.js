@@ -4,7 +4,7 @@ import axios from "axios";
 import Link from 'next/link'
 
 
-function TrackedWallets({ user }) {
+function TrackedWallets({ user, newUser }) {
 
     const router = useRouter();
     const [trackedAddresses, setTrackedAddresses] = useState([])
@@ -15,13 +15,15 @@ function TrackedWallets({ user }) {
 
 
     const getTrackedAddresses = () => {
-        axios
-        .get(`http://localhost:8080/api/lungo-backend/users/${user.address.toLowerCase()}`)
-        .then((res) => {
-            console.log(res.data.addresses)
-            setTrackedAddresses(res.data.addresses)
-            setLoaded(true);
-        });
+        if(newUser === undefined) {} else {
+            axios
+            .get(`http://localhost:8080/api/lungo-backend/users/${user.address.toLowerCase()}`)
+            .then((res) => {
+                console.log(res.data.addresses)
+                setTrackedAddresses(res.data.addresses)
+                setLoaded(true);
+            });
+        }
     };
 
     useEffect(() => {
@@ -29,7 +31,7 @@ function TrackedWallets({ user }) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [loaded]);
 
-      console.log(trackedAddresses)
+    console.log(trackedAddresses)
 
     const addAddressCall = async (e) => {
         e.preventDefault()
