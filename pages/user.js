@@ -2,7 +2,7 @@ import { getSession, signOut } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import NFTContainer from './nfts';
 import axios from "axios";
-import { CommonSolUtilsConfigSetup } from '@moralisweb3/common-sol-utils';
+
 
 // gets a prop from getServerSideProps
 function User({ user }) {
@@ -14,7 +14,7 @@ function User({ user }) {
     console.log(user)
 
 
-    const getUsers = () => {
+    const getUsers = async () => {
         axios
         .get(`http://localhost:8080/api/lungo-backend/users/${user.address.toLowerCase()}`)
         .then((res) => {
@@ -27,15 +27,15 @@ function User({ user }) {
     };
 
     const createNewUser = async () => {
-        // e.preventDefault()
-        console.log(newUser)
-        try {
-            // eslint-disable-next-line no-unused-vars
-            axios.post('http://localhost:8080/api/lungo-backend/newUser', newUser)
-        }
-        catch (err) {
-            console.log(err)
-        }
+        if(newUser === undefined) {} else {
+            try {
+                    // eslint-disable-next-line no-unused-vars
+                    axios.post('http://localhost:8080/api/lungo-backend/newUser', newUser)
+                }
+                catch (err) {
+                    console.log(err)
+                }
+            }
     }
     
     useEffect(() => {
