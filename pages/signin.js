@@ -34,7 +34,7 @@ function SignIn() {
 
     return (
         <div>
-            <h3>Web3 Authentication</h3>
+            <h3>Launch App</h3>
             <button onClick={handleAuth}>Authenticate via Metamask</button>
         </div>
     );
