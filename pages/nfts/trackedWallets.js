@@ -58,7 +58,7 @@ function TrackedWallets({ user }) {
         }
         try {
             // eslint-disable-next-line no-unused-vars
-            const change = await axios.put(`http://localhost:8080/api/lungo-backend/deleteAddress/${user.address.toLowerCase()}`, addressToDelete)
+            const change = await axios.put(`http://localhost:8080/api/lungo-backend/deleteAddress/${user.address}`, addressToDelete)
                 router.push('/user')
         }
         catch (err) {

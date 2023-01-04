@@ -24,6 +24,10 @@ function User({ user }) {
             if (res.data === null) {
                 createNewUser()
                 setLoaded(true);
+            } else {
+                setHasActiveUser(true)
+                setLoaded(true);
+                console.log('has active user', hasActiveUser)
             }
         });
     };
