@@ -14,11 +14,11 @@ function User({ user }) {
     const signedInUser = {address: user.address};
     console.log('user', user)
     console.log('signedInUser', signedInUser)
-    
+
 
     const getUsers = async () => {
         axios
-        .get(`http://localhost:8080/api/lungo-backend/users/${user.address.toLowerCase()}`)
+        .get(`http://localhost:8080/api/lungo-backend/users/${user.address}`)
         .then((res) => {
             console.log(res.data)
             if (res.data === null) {
@@ -53,7 +53,9 @@ function User({ user }) {
             <h1>Welcome to Lungo!</h1>
             {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
             <NFTContainer user={ user } />
-            <TrackedWallets user={user} />
+            {
+               (loaded && hasActiveUser) && <TrackedWallets user={ user } />
+            }
             <button onClick={() => signOut({ redirect: '/signin' })}>Sign out</button>
         </div>
     );

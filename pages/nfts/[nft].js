@@ -12,7 +12,6 @@ const NFT = () => {
     const params = router.query.nft.toString().split('-');
     const tokenHash = params[0];
     const user = params[1];
-    console.log(params)
 
 
     function getNFTimgs(metadata) {
@@ -35,7 +34,6 @@ const NFT = () => {
         let meta = JSON.parse(metadata);
 
         if (!meta.description) return;
-        console.log(meta.description)  
         return meta.description;
     }
 
@@ -53,7 +51,6 @@ const NFT = () => {
         .then(function (res) {
             setNFTresults(res.data.result);
             setLoaded(true);
-        console.log(res);
         })
         .catch(function (error) {
         console.error(error);
@@ -64,19 +61,16 @@ const NFT = () => {
         getNFTs()
     }, [loaded])
 
-    console.log(nftResults)
+    
     let nftMatch = nftResults.filter(item => {
-        console.log(item.token_hash)
-        console.log(tokenHash)
-        console.log(item.token_hash === tokenHash)
         return item.token_hash === tokenHash
     })
-    console.log(nftMatch[0])
+    
     if (nftMatch.length === 1) {
         nftMatch = (nftMatch[0])
     }
 
-    console.log(nftMatch)
+    
 
     return (
         <div style={{ width: "500px" }}>
