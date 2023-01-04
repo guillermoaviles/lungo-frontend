@@ -1,10 +1,10 @@
 import React, { useEffect, useState, } from "react";
 import axios from "axios";
 import Link from 'next/link'
-import TrackedWallets from "./trackedWallets";
 
 
-function NFTContainer({ user }) {
+
+function NFTContainer({ user, newUser }) {
     
   const [nfts, setNFTs] = useState([])
   const [loaded, setLoaded] = useState(false)
@@ -87,7 +87,6 @@ function NFTContainer({ user }) {
                     </div>
                   </>
                 )}
-                <TrackedWallets user={user}/>
               </div>
             </>
         );

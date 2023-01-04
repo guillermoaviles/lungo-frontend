@@ -14,12 +14,14 @@ function TrackedWallets({ user, newUser }) {
     })
 
 
+    console.log(newUser)
     const getTrackedAddresses = () => {
+        console.log('newUser', newUser)
         if(newUser === undefined) {} else {
             axios
             .get(`http://localhost:8080/api/lungo-backend/users/${user.address.toLowerCase()}`)
             .then((res) => {
-                console.log(res.data.addresses)
+                console.log(res.data)
                 setTrackedAddresses(res.data.addresses)
                 setLoaded(true);
             });
