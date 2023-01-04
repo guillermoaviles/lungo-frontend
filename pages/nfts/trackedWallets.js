@@ -85,7 +85,7 @@ function TrackedWallets({ user }) {
                                 return (
                                     <div>
                                         <Link 
-                                            href='/trackedAddresses/[trackedAddress]'
+                                            href='/trackedAddresses/[trackedWalletNFTContainer]'
                                             as={`trackedAddresses/${trackedAddress}`} 
                                             key={key}
                                         >

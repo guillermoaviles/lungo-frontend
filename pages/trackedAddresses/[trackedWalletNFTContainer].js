@@ -1,13 +1,20 @@
 import React, { useEffect, useState, } from "react";
 import axios from "axios";
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 
 
-function NFTContainer({ user }) {
+function trackedWalletNFTContainer() {
     
   const [nfts, setNFTs] = useState([])
   const [loaded, setLoaded] = useState(false)
+  const router = useRouter();
+  const params = router.query.trackedWalletNFTContainer;
+
+  
+
+  console.log('params', params)
 
     function getNFTimgs(metadata) {
         if (!metadata) return;
@@ -22,13 +29,12 @@ function NFTContainer({ user }) {
           return "https://ipfs.io/ipfs/" + meta.image.substring(7);
         }
       };
-      console.log(user.address)
 
     async function getNFTs() {
       let res;
       const options = {
           method: 'GET',
-          url: `https://deep-index.moralis.io/api/v2/${user.address.toLowerCase()}/nft`,
+          url: `https://deep-index.moralis.io/api/v2/${params}/nft`,
           params: {chain: 'eth', format: 'decimal', normalizeMetadata: 'false'},
           headers: {accept: 'application/json', 'X-API-Key': '90aMzzA9q0jMTFt2SUqJ2t1CWVRaIVUBErIJcDwYINiHz2vtquYggZMOzf9FKQZL'}
       };
@@ -39,7 +45,6 @@ function NFTContainer({ user }) {
               console.log(res);
               setNFTs(res.data.result);
               setLoaded(true);
-          console.log(res);
           })
           .catch(function (error) {
           console.error(error);
@@ -47,11 +52,14 @@ function NFTContainer({ user }) {
     };
 
     useEffect(() => {
+      if (!params) {
+        return
+      }
       getNFTs()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loaded])
+    }, [params])
 
-    console.log(nfts)
+    console.log('nfts', nfts)
 
         return (
             <>
@@ -66,7 +74,7 @@ function NFTContainer({ user }) {
                         return (
                             <Link 
                               href='/nfts/[nft]'
-                              as={`nfts/${nft.token_hash}-${user.address}`} 
+                              as={`nfts/${nft.token_hash}-${params}`} 
                               key={i}
                             >
                                 <div style={{ width: "70px" }}>
@@ -92,4 +100,4 @@ function NFTContainer({ user }) {
         );
 };
 
-export default NFTContainer;
+export default trackedWalletNFTContainer;

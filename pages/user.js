@@ -55,7 +55,6 @@ function User({ user }) {
     return (
         <div>
             <h1>Welcome to Lungo!</h1>
-            {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
             <NFTContainer user={ user } />
             {
                (loaded && hasActiveUser) && <TrackedWallets user={ user } />
