@@ -18,7 +18,7 @@ function User({ user }) {
 
     const getUsers = async () => {
         axios
-        .get(`http://localhost:8080/api/lungo-backend/users/${user.address}`)
+        .get(`https://lungo-backend.herokuapp.com/api/lungo-backend/users/${user.address}`)
         .then((res) => {
             console.log(res.data)
             if (res.data === null) {
@@ -35,7 +35,7 @@ function User({ user }) {
     const createNewUser = async () => {
             try {
                     // eslint-disable-next-line no-unused-vars
-                    axios.post('http://localhost:8080/api/lungo-backend/newUser', signedInUser)
+                    axios.post('https://lungo-backend.herokuapp.com/api/lungo-backend/newUser', signedInUser)
                     .then((res) => {
                         console.log('activeUser', res.data)
                         setHasActiveUser(true);

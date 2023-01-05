@@ -18,7 +18,7 @@ function TrackedWallets({ user }) {
 
     const getTrackedAddresses = () => {
             axios
-            .get(`http://localhost:8080/api/lungo-backend/users/${user.address}`)
+            .get(`https://lungo-backend.herokuapp.com/api/lungo-backend/users/${user.address}`)
             .then((res) => {
                 console.log(res.data)
                 setTrackedAddresses(res.data.addresses)
@@ -37,7 +37,7 @@ function TrackedWallets({ user }) {
         e.preventDefault()
         try {
             // eslint-disable-next-line no-unused-vars
-            const change = await axios.put(`http://localhost:8080/api/lungo-backend/addAddress/${user.address}`, addressToAdd)
+            const change = await axios.put(`https://lungo-backend.herokuapp.com/api/lungo-backend/addAddress/${user.address}`, addressToAdd)
                 router.push('/user')
         }
         catch (err) {
@@ -58,7 +58,7 @@ function TrackedWallets({ user }) {
         }
         try {
             // eslint-disable-next-line no-unused-vars
-            const change = await axios.put(`http://localhost:8080/api/lungo-backend/deleteAddress/${user.address}`, addressToDelete)
+            const change = await axios.put(`https://lungo-backend.herokuapp.com/api/lungo-backend/deleteAddress/${user.address}`, addressToDelete)
                 router.push('/user')
         }
         catch (err) {
