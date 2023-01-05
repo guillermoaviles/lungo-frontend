@@ -55,7 +55,7 @@ function User({ user }) {
         <div>
             <h1>Welcome to Lungo!</h1>
             {
-                (loaded && user) && <NFTContainer user={ user } />
+                (loaded && hasActiveUser) && <NFTContainer user={ user } />
             }
             {
                (loaded && hasActiveUser) && <TrackedWallets user={ user } />
