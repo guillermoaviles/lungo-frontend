@@ -50,7 +50,7 @@ function User({ user }) {
 
     useEffect(() => {
         getUsers()
-    }, [hasActiveUser])
+    }, [hasActiveUser, getUsers])
 
     return (
         <div>

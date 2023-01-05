@@ -59,7 +59,7 @@ const NFT = () => {
 
     useEffect(() => {
         getNFTs()
-    }, [loaded])
+    }, [loaded, getNFTs])
 
     
     let nftMatch = nftResults.filter(item => {
