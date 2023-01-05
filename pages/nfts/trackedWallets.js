@@ -83,7 +83,7 @@ function TrackedWallets({ user }) {
                         <div className="addresses-container">
                             {trackedAddresses?.map((trackedAddress, key) => {
                                 return (
-                                    <div>
+                                    <div key={key}>
                                         <Link 
                                             href='/trackedAddresses/[trackedWalletNFTContainer]'
                                             as={`trackedAddresses/${trackedAddress}`} 

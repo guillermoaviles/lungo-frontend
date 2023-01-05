@@ -65,7 +65,7 @@ function TrackedWalletNFTContainer() {
             <>
               <div className="App">
                 <div style={{ fontSize: "23px", fontWeight: "700" }}>
-                  {params}'s' NFTs ({nfts.length})
+                  {params}&apos;s NFTs ({nfts.length})
                 </div>
                 {nfts.length > 0 && (
                   <>
