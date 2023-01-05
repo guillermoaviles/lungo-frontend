@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 
-const trackedWalletNFT = () => {
+const TrackedWalletNFT = () => {
 
     const [nftResults, setNFTresults] = useState([])
     const [loaded, setLoaded] = useState(false)
@@ -102,4 +102,4 @@ const trackedWalletNFT = () => {
     )
 }
 
-export default trackedWalletNFT;
+export default TrackedWalletNFT;

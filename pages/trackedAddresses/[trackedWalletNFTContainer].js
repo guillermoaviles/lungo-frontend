@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 
 
-function trackedWalletNFTContainer() {
+function TrackedWalletNFTContainer() {
     
   const [nfts, setNFTs] = useState([])
   const [loaded, setLoaded] = useState(false)
@@ -106,4 +106,4 @@ function trackedWalletNFTContainer() {
         );
 };
 
-export default trackedWalletNFTContainer;
+export default TrackedWalletNFTContainer;
