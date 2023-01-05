@@ -16,6 +16,7 @@ function User({ user }) {
     console.log('signedInUser', signedInUser)
 
 
+    useEffect(() => {
     const getUsers = async () => {
         axios
         .get(`https://lungo-backend.herokuapp.com/api/lungo-backend/users/${user.address}`)
@@ -47,10 +48,8 @@ function User({ user }) {
                 }
     }
 
-
-    useEffect(() => {
         getUsers()
-    }, [hasActiveUser, getUsers])
+    }, [hasActiveUser, user])
 
     return (
         <div>
