@@ -49,7 +49,7 @@ function User({ user }) {
     }
 
         getUsers()
-    }, [hasActiveUser, user])
+    }, [hasActiveUser, signedInUser, user])
 
     return (
         <div>

@@ -67,7 +67,7 @@ const TrackedWalletNFT = () => {
     }
 
         getNFTs()
-    }, [loaded, params])
+    }, [loaded, user])
 
     
     let nftMatch = nftResults.filter(item => {
