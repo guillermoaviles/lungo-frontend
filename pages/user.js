@@ -10,7 +10,6 @@ function User({ user }) {
 
     const [hasActiveUser, setHasActiveUser] = useState(false)
     const [loaded, setLoaded] = useState(false)
-
     const signedInUser = {address: user.address};
     console.log('user', user)
     console.log('signedInUser', signedInUser)
@@ -54,9 +53,7 @@ function User({ user }) {
     return (
         <div>
             <h1>Welcome to Lungo!</h1>
-            {
-                (loaded && hasActiveUser) && <NFTContainer user={ user } />
-            }
+            <NFTContainer user={ user } />
             {
                (loaded && hasActiveUser) && <TrackedWallets user={ user } />
             }
