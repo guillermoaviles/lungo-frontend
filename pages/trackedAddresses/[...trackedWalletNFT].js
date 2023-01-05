@@ -4,15 +4,17 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 
-const NFT = () => {
+const trackedWalletNFT = () => {
 
     const [nftResults, setNFTresults] = useState([])
     const [loaded, setLoaded] = useState(false)
     const router = useRouter();
-    const params = router.query.nft.toString().split('-');
-    const tokenHash = params[0];
-    const user = params[1];
+    const params = router.query.trackedWalletNFT;
+    console.log(router)
+    const user = params[0]
+    const tokenHash = params[1]
 
+    console.log('NFT user', params)
 
     function getNFTimgs(metadata) {
         if (!metadata) return;
@@ -90,7 +92,9 @@ const NFT = () => {
                         {getNFTdescription(nftMatch.metadata)}
                     </div>
                     <button>
-                        <Link href='/user'>Go back</Link>
+                        <Link href={{
+                            pathname: '/trackedAddresses/[trackedWalletNFTContainer]',
+                            query: {trackedWalletNFTContainer: user}}}>Go back</Link>
                     </button>
             </>
             )}
@@ -98,4 +102,4 @@ const NFT = () => {
     )
 }
 
-export default NFT;
+export default trackedWalletNFT;

@@ -4,7 +4,7 @@ import axios from "axios";
 import Link from 'next/link'
 
 
-function TrackedWallets({ user, newUser }) {
+function TrackedWallets({ user }) {
 
     const router = useRouter();
     const [trackedAddresses, setTrackedAddresses] = useState([])
@@ -14,16 +14,16 @@ function TrackedWallets({ user, newUser }) {
     })
 
 
+    console.log(user)
+
     const getTrackedAddresses = () => {
-        if(newUser === undefined) {} else {
             axios
-            .get(`http://localhost:8080/api/lungo-backend/users/${user.address.toLowerCase()}`)
+            .get(`http://localhost:8080/api/lungo-backend/users/${user.address}`)
             .then((res) => {
-                console.log(res.data.addresses)
+                console.log(res.data)
                 setTrackedAddresses(res.data.addresses)
                 setLoaded(true);
             });
-        }
     };
 
     useEffect(() => {
@@ -37,7 +37,7 @@ function TrackedWallets({ user, newUser }) {
         e.preventDefault()
         try {
             // eslint-disable-next-line no-unused-vars
-            const change = await axios.put(`http://localhost:8080/api/lungo-backend/addAddress/${user.address.toLowerCase()}`, addressToAdd)
+            const change = await axios.put(`http://localhost:8080/api/lungo-backend/addAddress/${user.address}`, addressToAdd)
                 router.push('/user')
         }
         catch (err) {
@@ -58,7 +58,7 @@ function TrackedWallets({ user, newUser }) {
         }
         try {
             // eslint-disable-next-line no-unused-vars
-            const change = await axios.put(`http://localhost:8080/api/lungo-backend/deleteAddress/${user.address.toLowerCase()}`, addressToDelete)
+            const change = await axios.put(`http://localhost:8080/api/lungo-backend/deleteAddress/${user.address}`, addressToDelete)
                 router.push('/user')
         }
         catch (err) {
@@ -85,7 +85,7 @@ function TrackedWallets({ user, newUser }) {
                                 return (
                                     <div>
                                         <Link 
-                                            href='/trackedAddresses/[trackedAddress]'
+                                            href='/trackedAddresses/[trackedWalletNFTContainer]'
                                             as={`trackedAddresses/${trackedAddress}`} 
                                             key={key}
                                         >
