@@ -37,6 +37,7 @@ const NFT = () => {
         return meta.description;
     }
 
+    useEffect(() => {
     async function getNFTs() {
     let res;
     const options = {
@@ -57,9 +58,9 @@ const NFT = () => {
         });
     }
 
-    useEffect(() => {
+    
         getNFTs()
-    }, [loaded, getNFTs])
+    }, [loaded])
 
     
     let nftMatch = nftResults.filter(item => {
