@@ -48,6 +48,9 @@ function NFTContainer({ user }) {
     };
 
     useEffect(() => {
+      if (!user) {
+        return
+      }
       getNFTs()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loaded, user])
