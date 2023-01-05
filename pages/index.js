@@ -9,11 +9,7 @@ function NFTContainer({ user }) {
   const [nfts, setNFTs] = useState([])
   const [loaded, setLoaded] = useState(false)
 
-  let usr;
-
-  if (user) {
-    usr = user
-  }
+  let usr = user ? user : {address: '0x5D3Af3b111B07Af18A14cDA6B5027eec53E581F3'}
 
     function getNFTimgs(metadata) {
         if (!metadata) return;
