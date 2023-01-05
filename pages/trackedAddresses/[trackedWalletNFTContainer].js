@@ -72,24 +72,55 @@ function trackedWalletNFTContainer() {
                     <div className="nft-container">
                       {nfts?.map((nft, i) => {
                         return (
+                            // <Link 
+                            //   href={{
+                            //     pathname: '/trackedAddresses/[trackedWalletNFTContainer]/[trackedWalletNFT]',
+                            //     query: {
+                            //       trackedWalletNFTContainer: params,
+                            //       trackedWalletNFT: nft.token_hash
+                            //     },
+                            //   }}
+
+                            //   // as={`${params}/${nft.token_hash}-${params}`} 
+                            //   key={i}
+                            // >
+                            //     <div style={{ width: "70px" }}>
+                            //         <img
+                            //             loading="lazy"
+                            //             width={70}
+                            //             src={getNFTimgs(nft.metadata)}
+                            //             alt={`${i}image`}
+                            //             style={{ borderRadius: "5px", marginTop: "10px" }}
+                            //         />
+                            //         <div key={i} style={{ fontSize: "10px" }}>
+                            //             {`${nft.name}\n${nft.token_id}`}
+                            //         </div>
+                            //     </div>
+                            // </Link>
                             <Link 
-                              href='/nfts/[nft]'
-                              as={`nfts/${nft.token_hash}-${params}`} 
-                              key={i}
-                            >
-                                <div style={{ width: "70px" }}>
-                                    <img
-                                        loading="lazy"
-                                        width={70}
-                                        src={getNFTimgs(nft.metadata)}
-                                        alt={`${i}image`}
-                                        style={{ borderRadius: "5px", marginTop: "10px" }}
-                                    />
-                                    <div key={i} style={{ fontSize: "10px" }}>
-                                        {`${nft.name}\n${nft.token_id}`}
-                                    </div>
-                                </div>
-                            </Link>
+                            href={`/trackedAddresses/${params}/${nft.token_hash}` }
+                              query = {
+                                params
+                              }
+                            
+                              // as={`/trackedAddresses/${params}/${nft.token_hash}`} 
+
+                            // as={`${params}/${nft.token_hash}-${params}`} 
+                            key={i}
+                          >
+                              <div style={{ width: "70px" }}>
+                                  <img
+                                      loading="lazy"
+                                      width={70}
+                                      src={getNFTimgs(nft.metadata)}
+                                      alt={`${i}image`}
+                                      style={{ borderRadius: "5px", marginTop: "10px" }}
+                                  />
+                                  <div key={i} style={{ fontSize: "10px" }}>
+                                      {`${nft.name}\n${nft.token_id}`}
+                                  </div>
+                              </div>
+                          </Link>
                         )
                       })}
                     </div>
