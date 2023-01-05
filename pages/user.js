@@ -1,6 +1,6 @@
 import { getSession, signOut } from 'next-auth/react';
 import { useEffect, useState } from 'react';
-import NFTContainer from './nfts';
+import NFTContainer from '.';
 import TrackedWallets from './trackedWallets';
 import axios from "axios";
 
