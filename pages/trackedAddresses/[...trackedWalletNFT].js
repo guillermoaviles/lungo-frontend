@@ -11,8 +11,14 @@ const TrackedWalletNFT = () => {
     const router = useRouter();
     const params = router.query.trackedWalletNFT;
     console.log(router)
-    const user = params[0]
-    const tokenHash = params[1]
+    let user = '';
+    let tokenHash = '';
+
+    if (params) {
+        user = params[0]
+        tokenHash = params[1]
+    }
+
 
     console.log('NFT user', params)
 
@@ -39,6 +45,7 @@ const TrackedWalletNFT = () => {
         return meta.description;
     }
 
+    useEffect(() => {
     async function getNFTs() {
     let res;
     const options = {
@@ -59,9 +66,8 @@ const TrackedWalletNFT = () => {
         });
     }
 
-    useEffect(() => {
         getNFTs()
-    }, [loaded, getNFTs])
+    }, [loaded, params])
 
     
     let nftMatch = nftResults.filter(item => {

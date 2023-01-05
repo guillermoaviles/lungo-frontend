@@ -77,10 +77,6 @@ function TrackedWalletNFTContainer() {
                               query = {
                                 params
                               }
-                            
-                              // as={`/trackedAddresses/${params}/${nft.token_hash}`} 
-
-                            // as={`${params}/${nft.token_hash}-${params}`} 
                             key={i}
                           >
                               <div style={{ width: "70px" }}>

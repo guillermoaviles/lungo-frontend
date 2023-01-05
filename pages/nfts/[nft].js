@@ -9,7 +9,7 @@ const NFT = () => {
     const [nftResults, setNFTresults] = useState([])
     const [loaded, setLoaded] = useState(false)
     const router = useRouter();
-    const params = router.query.nft.toString().split('-');
+    const params = router.query.nft?.toString().split('-') || "";
     const tokenHash = params[0];
     const user = params[1];
 
