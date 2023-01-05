@@ -9,7 +9,6 @@ function NFTContainer({ user }) {
   const [nfts, setNFTs] = useState([])
   const [loaded, setLoaded] = useState(false)
 
-  let usr = user ? user : {address: user.address}
 
     function getNFTimgs(metadata) {
         if (!metadata) return;
@@ -24,13 +23,13 @@ function NFTContainer({ user }) {
           return "https://ipfs.io/ipfs/" + meta.image.substring(7);
         }
       };
-      console.log(usr.address)
+      console.log(user.address)
 
     async function getNFTs() {
       let res;
       const options = {
           method: 'GET',
-          url: `https://deep-index.moralis.io/api/v2/${usr.address.toLowerCase()}/nft`,
+          url: `https://deep-index.moralis.io/api/v2/${user.address.toLowerCase()}/nft`,
           params: {chain: 'eth', format: 'decimal', normalizeMetadata: 'false'},
           headers: {accept: 'application/json', 'X-API-Key': '90aMzzA9q0jMTFt2SUqJ2t1CWVRaIVUBErIJcDwYINiHz2vtquYggZMOzf9FKQZL'}
       };
@@ -51,7 +50,7 @@ function NFTContainer({ user }) {
     useEffect(() => {
       getNFTs()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loaded])
+    }, [loaded, user])
 
     console.log(nfts)
 
@@ -68,7 +67,7 @@ function NFTContainer({ user }) {
                         return (
                             <Link 
                               href='/nfts/[nft]'
-                              as={`nfts/${nft.token_hash}-${usr.address}`} 
+                              as={`nfts/${nft.token_hash}-${user.address}`} 
                               key={i}
                             >
                                 <div style={{ width: "70px" }}>
