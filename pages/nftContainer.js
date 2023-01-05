@@ -23,7 +23,6 @@ function NFTContainer({ user }) {
           return "https://ipfs.io/ipfs/" + meta.image.substring(7);
         }
       };
-      console.log(user.address)
 
     async function getNFTs() {
 
@@ -49,13 +48,9 @@ function NFTContainer({ user }) {
     };
 
     useEffect(() => {
-      if (!user) {
-        return
-      } else {
         getNFTs()
-      } 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loaded, user])
+    }, [loaded])
 
     console.log(nfts)
 

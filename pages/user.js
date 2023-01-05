@@ -10,6 +10,7 @@ function User({ user }) {
 
     const [hasActiveUser, setHasActiveUser] = useState(false)
     const [loaded, setLoaded] = useState(false)
+
     const signedInUser = {address: user.address};
     console.log('user', user)
     console.log('signedInUser', signedInUser)
@@ -46,7 +47,6 @@ function User({ user }) {
                     console.log(err)
                 }
     }
-
         getUsers()
     }, [hasActiveUser, user])
 
