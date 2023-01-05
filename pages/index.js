@@ -26,6 +26,9 @@ function NFTContainer({ user }) {
       console.log(user.address)
 
     async function getNFTs() {
+      if (!user) {
+        return
+      }
       let res;
       const options = {
           method: 'GET',
@@ -48,9 +51,6 @@ function NFTContainer({ user }) {
     };
 
     useEffect(() => {
-      if (!user) {
-        return
-      }
       getNFTs()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loaded, user])
