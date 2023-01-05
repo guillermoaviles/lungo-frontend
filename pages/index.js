@@ -8,6 +8,7 @@ function NFTContainer({ user }) {
     
   const [nfts, setNFTs] = useState([])
   const [loaded, setLoaded] = useState(false)
+  
 
 
     function getNFTimgs(metadata) {
@@ -26,9 +27,6 @@ function NFTContainer({ user }) {
       console.log(user.address)
 
     async function getNFTs() {
-      if (!user) {
-        return
-      }
       let res;
       const options = {
           method: 'GET',
