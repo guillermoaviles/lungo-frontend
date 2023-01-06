@@ -97,6 +97,9 @@ function TrackedWalletNFTContainer() {
                     </div>
                   </>
                 )}
+                <Link className="button" href='/user'>
+                        Go back
+                </Link>
               </div>
             </>
         );
