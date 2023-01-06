@@ -50,9 +50,9 @@ const NFT = () => {
                     <div style={{ fontSize: "13px", fontWeight: "bold", marginTop: "5px"}}>
                         Attributes
                     </div>
-                    {meta.attributes?.map(({trait_type, value}) => {
+                    {meta.attributes?.map(({trait_type, value}, key) => {
                         return (
-                            <div className="attribute">
+                            <div className="attribute" key={key}>
                                 <div>
                                     {`${trait_type}: ${value}`}
                                 </div>
