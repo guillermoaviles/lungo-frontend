@@ -70,11 +70,11 @@ function TrackedWallets({ user }) {
     return (
         <>
             <div className="tracked-addresses">
-                <div>
+                <div style={{ fontSize: "23px", fontWeight: "700", marginBottom: "20px" }}>
                     My Tracked Wallets ({trackedAddresses.length})
                 </div>
-                <h1>Add Wallet</h1>
                 <form className='address-box' onSubmit={addAddressCall}>
+                    <label>Add Wallet </label>
                     <input className='input' placeholder="Address" name="addresses" value={addressToAdd.addresses} onChange={handleAddAddress} required></input>
                     <button className='item-button'>Add</button>
                 </form>
@@ -83,17 +83,16 @@ function TrackedWallets({ user }) {
                         <div className="addresses-container">
                             {trackedAddresses?.map((trackedAddress, key) => {
                                 return (
-                                    <div key={key}>
+                                    <div className="addresses-card" key={key}>
                                         <Link 
                                             href='/trackedAddresses/[trackedWalletNFTContainer]'
                                             as={`trackedAddresses/${trackedAddress}`} 
                                             key={key}
+                                            className="tracked-address"
                                         >
-                                            <div style={{ width: "70px" }}>
-                                                {trackedAddress}
-                                            </div>
+                                           {trackedAddress}
                                         </Link>
-                                        <button value={trackedAddress} onClick={() => deleteAddressCall(trackedAddress)}>❌</button>
+                                        <button style={{ margin:"10px"}} value={trackedAddress} onClick={() => deleteAddressCall(trackedAddress)}>❌</button>
                                     </div>
                                 )
                             })}

@@ -6,9 +6,10 @@ const Navbar = () => {
             <div className="logo">
                 <h1>Lungo</h1>
             </div>
-            <Link href="/user">Home</Link>
+            <Link className="button" href="/user"><div className="button">Home</div></Link>
         </nav>
     )
 }
+
 
 export default Navbar;
