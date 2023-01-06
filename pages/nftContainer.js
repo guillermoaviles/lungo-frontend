@@ -16,7 +16,7 @@ function NFTContainer({ user }) {
     
         let meta = JSON.parse(metadata);
     
-        if (!meta.image) {return no_image}
+        if (!meta.image) {return "https://www.pngfind.com/pngs/m/606-6062089_broken-image-icon-png-transparent-png.png"}
     
         if (!meta.image.includes("ipfs://")) {
           return meta.image;
