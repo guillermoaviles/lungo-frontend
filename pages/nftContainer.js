@@ -1,7 +1,7 @@
 import React, { useEffect, useState, } from "react";
 import axios from "axios";
 import Link from 'next/link'
-import Image from 'next/image'
+import no_image from "../media"
 
 
 
@@ -16,7 +16,7 @@ function NFTContainer({ user }) {
     
         let meta = JSON.parse(metadata);
     
-        if (!meta.image) return;
+        if (!meta.image) return no_image;
     
         if (!meta.image.includes("ipfs://")) {
           return meta.image;
