@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Lungo - NFT Portfolio and Wallet Tracker
+<div align="center">A web3 NFT portfolio visualizer and wallet tracking app by <strong>Guillermo Aviles</strong>.
+<br></br>
+<img src="https://user-images.githubusercontent.com/33820055/211106064-4a1c081a-04ff-4138-9e34-7999689d11cd.png"/>
+</div>
 
-## Getting Started
 
-First, run the development server:
+## Project Overview
+Lungo allows users to sign in with their MetaMask wallet and display their NFT collections, view NFT details and attributes, as well as links to marketplaces. Users are also able to create a list of wallets they’d like to track in order to keep up with what other NFT investors are doing. After adding a tracked wallet, users are able to see the NFTs owned by that address and track changes in their portfolio.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
++ This repository is the front-end respository for the app.
++ The back-end is deployed on Heroku: [here](https://lungo-backend.herokuapp.com/api/lungo-backend)
++ The front-end is deployed on Vercel: [here](https://lungo.vercel.app/)
++ The associated back-end repository can be found: [here](https://github.com/guillermoaviles/lungo-backend) 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
+1. Clone this repository to your labs folder and change directory into it.
+2. Run `npm i` to download required dependencies.
+3. Run `npm start` to run localhost
+4. You will need a Moralis API key in order to query data from Moralis.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Deployment
+The front-end of the application uses NextJS. The front-end follows the best practice in naming the components to be semantic. The front-end composes the following technologies/platforms:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Vercel:
+Vercel is the most accessible platform to deploy websites. By connecting the ** your GitHub repository** to Vercel, you can simply deploy the main branch to Vercel domains — and it does all the heavy lifting for you. **(Julian Wallis)**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Technologies
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" width=10% height=10%><img src="https://user-images.githubusercontent.com/33820055/211115496-ebffab3b-6d65-448b-8ef8-29ab956bc76d.png" width=10% height=10%> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" width=10% height=10%><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" width=10% height=10%><img src="https://user-images.githubusercontent.com/33820055/211115756-1498003e-a59f-4ef3-8721-65d11f43c78d.png" width=10% height=10%><img src="https://user-images.githubusercontent.com/33820055/211115670-3be19d99-b0b9-437d-901d-b32510e34576.png" width=30% height=50%>
