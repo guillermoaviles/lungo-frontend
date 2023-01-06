@@ -37,6 +37,33 @@ const NFT = () => {
         return meta.description;
     }
 
+    function getNFTattributes(metadata) {
+        if (!metadata) return;
+
+        let meta = JSON.parse(metadata);
+
+        if (!meta.attributes) return;
+        console.log('attributes', meta.attributes)
+        return (
+            <>
+                <div className="attribute-container" style={{ marginBottom: "55px" }}>
+                    <div style={{ fontSize: "13px", fontWeight: "bold", marginTop: "5px"}}>
+                        Attributes
+                    </div>
+                    {meta.attributes?.map(({trait_type, value}) => {
+                        return (
+                            <div className="attribute">
+                                <div>
+                                    {`${trait_type}: ${value}`}
+                                </div>
+                            </div> 
+                        )
+                    })}
+                </div>
+            </>
+        )
+    }
+
     useEffect(() => {
     async function getNFTs() {
     let res;
@@ -74,7 +101,7 @@ const NFT = () => {
     
 
     return (
-        <div style={{ width: "500px" }}>
+        <div style={{ width: "500px", margin: "auto" }}>
             {nftMatch && (
                 <>
                     <img
@@ -84,15 +111,21 @@ const NFT = () => {
                         alt={`image`}
                         style={{ borderRadius: "5px", marginTop: "10px" }}
                     />
-                    <div style={{ fontSize: "14px", fontWeight: "bold" }}>
+                    <div style={{ fontSize: "14px", fontWeight: "bold", marginTop: "5px" }}>
                         {`${nftMatch.name}\n#${nftMatch.token_id}`}
                     </div>
                     <div style={{ fontSize: "12px" }}>
                         {getNFTdescription(nftMatch.metadata)}
                     </div>
-                    <button>
-                        <Link href='/user'>Go back</Link>
-                    </button>
+                    <div style={{ fontSize: "12px" }}>
+                        {getNFTattributes(nftMatch.metadata)}
+                    </div>
+                    <Link className="button" href={`https://opensea.io/assets/ethereum/${nftMatch.token_address}/${nftMatch.token_id}`}>
+                        View on OpenSea
+                    </Link>
+                    <Link className="button" href='/user'>
+                        Go back
+                    </Link>
             </>
             )}
         </div>

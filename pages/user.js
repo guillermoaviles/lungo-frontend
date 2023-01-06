@@ -52,11 +52,13 @@ function User({ user }) {
 
     return (
         <div>
+            <div className="user-session">
+                <button className="signout-button" onClick={() => signOut({ redirect: '/signin' })}>Sign out</button>
+            </div>
             <NFTContainer user={ user } />
             {
                (loaded && hasActiveUser) && <TrackedWallets user={ user } />
             }
-            <button onClick={() => signOut({ redirect: '/signin' })}>Sign out</button>
         </div>
     );
 }

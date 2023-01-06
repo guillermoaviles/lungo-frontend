@@ -1,32 +1,79 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
 
 body {
-  background: #f2f2f2;
-  color: #333;
+  background: radial-gradient(circle at 50.1% 68.8%, rgb(40, 40, 40) 0%, rgb(5, 5, 5) 99.4%);
+  color: #e1e1e1;
   font-family: "Nunito";
 }
+
+/* main {
+  height: 100vh;
+  width: 100vw;
+} */
+
 a {
-  color: #333;
+  font-size: 10px;
+  color: #e1e1e1;
   text-decoration: none;
+  background: #343434;
+  padding: 10px;
+  border-radius: 5px;
 }
 .content {
   max-width: 960px;
   margin: 0 auto;
 }
 nav {
-  margin: 10px auto 80px;
+  margin: 10px auto 10px;
   padding: 10px 0;
   display: flex;
-  justify-content: flex-end;
   align-items: flex-end;
-  border-bottom: 1px solid #ddd;
 }
 nav a {
-  margin-left: 12px;
+  margin-right: 5%;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 60px;
+  font-size: 10px;
+
 }
 nav .logo {
   margin-right: auto;
+  margin-left: 5%;
 }
+
+.user-session {
+  margin: 10px auto 50px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  background-color: #f821e6;
+  text-align: center;
+  font-size: 15px;
+  padding: px;
+  margin-right: 5%;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 60px;
+}
+
+.signout-button {
+  background-color: #f821e6;
+  width: 80px;
+  height: 40px;
+  color: #e1e1e1;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  margin-right: 5%;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 5px;
+  border-style: none;
+}
+
 footer {
   display: block;
   text-align: center;
@@ -34,4 +81,42 @@ footer {
   margin-top: 60px;
   color: #777;
   border-top: 1px solid #eaeaea;
+}
+
+
+
+.App {
+  max-width: 75%;
+  margin: auto;
+}
+
+.nft-container {
+  padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 25px;
+}
+
+.nft-card {
+  width: 100px;
+}
+
+.tracked-addresses {
+  max-width: 40%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.addresses-card {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.tracked-address {
+  margin: 10px;
+  width: 300px;
+  font-size: 12px;
 }

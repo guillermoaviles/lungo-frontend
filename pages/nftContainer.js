@@ -1,6 +1,7 @@
 import React, { useEffect, useState, } from "react";
 import axios from "axios";
 import Link from 'next/link'
+import Image from 'next/image'
 
 
 
@@ -70,15 +71,15 @@ function NFTContainer({ user }) {
                               as={`nfts/${nft.token_hash}-${user.address}`} 
                               key={i}
                             >
-                                <div style={{ width: "70px" }}>
+                                <div className="nft-card">
                                     <img
                                         loading="lazy"
-                                        width={70}
+                                        width={100}
                                         src={getNFTimgs(nft.metadata)}
                                         alt={`${i}image`}
                                         style={{ borderRadius: "5px", marginTop: "10px" }}
                                     />
-                                    <div key={i} style={{ fontSize: "10px" }}>
+                                    <div key={i}>
                                         {`${nft.name}\n${nft.token_id}`}
                                     </div>
                                 </div>
