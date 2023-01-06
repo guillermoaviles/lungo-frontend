@@ -64,6 +64,9 @@ function TrackedWalletNFTContainer() {
         return (
             <>
               <div className="App">
+                <Link className="signout-button" href='/user'>
+                        Go back
+                </Link>
                 <div style={{ fontSize: "23px", fontWeight: "700" }}>
                   {params}&apos;s NFTs ({nfts.length})
                 </div>
@@ -97,9 +100,6 @@ function TrackedWalletNFTContainer() {
                     </div>
                   </>
                 )}
-                <Link className="button" href='/user'>
-                        Go back
-                </Link>
               </div>
             </>
         );
