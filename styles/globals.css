@@ -75,6 +75,21 @@ nav .logo {
   border-style: none;
 }
 
+.go-bck-button {
+  background-color: #f821e6;
+  width: 80px;
+  height: 40px;
+  color: #e1e1e1;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  margin-right: 5%;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 5px;
+  border-style: none;
+}
+
 footer {
   display: block;
   text-align: center;

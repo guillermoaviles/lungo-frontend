@@ -64,7 +64,7 @@ function TrackedWalletNFTContainer() {
         return (
             <>
               <div className="user-session">
-                  <Link className="signout-button" href='/user'>
+                  <Link className="go-bck-button" href='/user'>
                           Go back
                   </Link>
               </div>
